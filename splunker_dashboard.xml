@@ -3,9 +3,8 @@
   <description>Use built-in chart color options to set background, foreground, font, and seriesColors.</description>
   <row>
     <panel>
-      <title>Splunker Dashboard</title>
       <single>
-        <title>어제의 총 트래픽</title>
+        <title>트래픽 총량(Last 24h)</title>
         <search>
           <query>index=webserver log_type=httpd* |stats count by log_type| stats sum(count) as total_count | table total_count </query>
           <earliest>-2d@d</earliest>
@@ -16,38 +15,55 @@
         <option name="rangeColors">["0x0E31EB","0x6db7c6","0xf7bc38","0xf58f39","0xd93f3c"]</option>
         <option name="rangeValues">[0,10000,50000,100000]</option>
         <option name="useColors">1</option>
-        <option name="height">143</option>
+        <option name="height">120</option>
         <!--<option name="underLabel">compared to 2 days before</option>-->
-        <!--<option name="unit">개</option>-->
       </single>
+    </panel>
+    <panel>
       <single>
-        <title>어제 유입된 총 공격 트래픽</title>
+        <title>서버 리소스 현황</title>
         <search>
-          <query>| inputlookup splunk-stock.csv | eval _time=strptime(date, "%Y-%m-%d") | timechart last(close) span=7d | fillnull value=NULL</query>
+          <query>| inputlookup splunk-stock.csv | eval _time=strptime(date, "%Y-%m-%d") | timechart last(count) span=7d | fillnull value=NULL</query>
           <earliest>0</earliest>
         </search>
         <option name="trendDisplayMode">percent</option>
         <option name="trendInterval">-1w</option>
         <option name="colorBy">trend</option>
-        <option name="numberPrecision">0.00</option>
+        <option name="numberPrecision">0.0</option>
         <option name="useColors">1</option>
         <option name="useThousandSeparators">1</option>
-        <option name="height">143</option>
+        <option name="height">120</option>
         <option name="underLabel">compared to 2 days before</option>
-        <option name="unit">$</option>
-        <option name="unitPosition">before</option>
       </single>
     </panel>
   </row>
   <row>
     <panel>
       <chart>
-        <title>공격 유형 별 점유율</title>
+        <title>트래픽 유입량(Last 1h)</title>
+        <search>
+          <query>index=webserver log_type=httpd* src_ip!=*:*| timechart count by src_ip limit=3</query>
+          <earliest>-60m@m</earliest>
+          <latest>now</latest>
+        </search>
+        <option name="height">180</option>
+        <option name="charting.backgroundColor">#475565</option>
+        <option name="charting.foregroundColor">#EBF5FF</option>
+        <option name="charting.fontColor">#99CCFF</option>
+        <option name="charting.seriesColors">[#EB6502,0xC2D1E0,0x99B2CC,0x7094B8,0x4775A3,0x2E5C8A,0x24476B,0x1A334C,0x0F1F2E,0x050A0F]</option>
+      </chart>
+    </panel>
+  </row>
+  <row>
+    <panel>
+      <chart>
+        <title>유입된 공격 TOP 10(Last 24h)</title>
         <search>
           <query>index=_internal | top sourcetype</query>
           <earliest>-60m@m</earliest>
           <latest>now</latest>
         </search>
+        <option name="height">350</option>
         <option name="charting.backgroundColor">#475565</option>
         <option name="charting.chart">pie</option>
         <option name="charting.fontColor">#99CCFF</option>
@@ -56,18 +72,19 @@
       </chart>
     </panel>
     <panel>
-      <chart>
-        <title>시간 별 트래픽 유입량</title>
+      <table>
+        <title>유입</title>
         <search>
-          <query>index=webserver log_type=httpd* src_ip!=*:*| timechart count by src_ip limit=3</query>
-          <earliest>-60m@m</earliest>
+          <query>index=_internal | top limit=10 sourcetype | eval percent = round(percent,2)</query>
+          <earliest>-24h@h</earliest>
           <latest>now</latest>
         </search>
-        <option name="charting.backgroundColor">#475565</option>
-        <option name="charting.foregroundColor">#EBF5FF</option>
-        <option name="charting.fontColor">#99CCFF</option>
-        <option name="charting.seriesColors">[#EB6502,0xC2D1E0,0x99B2CC,0x7094B8,0x4775A3,0x2E5C8A,0x24476B,0x1A334C,0x0F1F2E,0x050A0F]</option>
-      </chart>
+        <option name="count">10</option>
+        <option name="dataOverlayMode">none</option>
+        <option name="drilldown">cell</option>
+        <option name="rowNumbers">true</option>
+        <option name="wrap">true</option>
+      </table>
     </panel>
   </row>
 </dashboard>
