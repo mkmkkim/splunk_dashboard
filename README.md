@@ -26,10 +26,12 @@ __시나리오1 - admin 페이지 내 XSS 취약점을 이용한 피싱사이트
 [성심당 해킹](https://m.boannews.com/html/detail.html?idx=129583,"성심당%20해킹")</br>
 [유명 제품 크랙버전을 위장한 인포스틸러](https://m.boannews.com/html/detail.html?idx=128626,"유명%20제품%20크랙버전을%20위장한%20인포스틸러")</br>
 [인포스틸러로 브라우저 자동로그인 파일 탈취](https://m.boannews.com/html/detail.html?tab_type=1&idx=127372,"인포스틸러로%20브라우저%20자동로그인%20파일%20탈취")</br></br>
-* 전개</br>
+* 유출과정</br>
 ![image](https://github.com/mkmkkim/splunk_dashboard/assets/74914390/bc847e54-aa38-4a08-bafd-effaf3629ed9)</br>
-_브라우저 자동로그인 파일 탈취 과정</br></br>_
-![image](https://github.com/mkmkkim/splunk_dashboard/assets/74914390/2de58b5e-3514-4110-9d4b-b7166a9b8032)</br>
-_트래블닷컴 관리자 계정 탈취</br>_
+_브라우저 자동로그인 파일 탈취 과정_
+</br></br>![image](https://github.com/mkmkkim/splunk_dashboard/assets/74914390/2de58b5e-3514-4110-9d4b-b7166a9b8032)</br>
+_트래블닷컴 관리자 계정 탈취</br></br></br>_
+* 시나리오 전개</br>
+![결과_XSS](https://github.com/mkmkkim/splunk_dashboard/assets/74914390/2c73cc5c-063f-4b79-99d0-e3fe1dbf1174)
 
 </br>
