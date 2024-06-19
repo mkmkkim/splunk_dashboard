@@ -2,14 +2,18 @@
 ---
 ### 1. 수행목적</br>
 Splunk를 이용한 공격성 트래픽 탐지로 실무역량 강화</br>
-* 시나리오1: admin계정 탈취로 admin페이지 내 XSS취약점을 이용한 피싱사이트 리다이렉트</br>
-* 시나리오2: 대시보드 지표를 활용하여 DDoS공격 탐지</br></br>
-
-![image](https://github.com/mkmkkim/splunk_dashboard/assets/74914390/3969cf27-0d87-4dad-92ff-380ef621f3bf)</br>
-_대시보드 이미지_</br>
-### 2. 수행방안</br>
+* 수행주제
+  * 시나리오1: admin계정 탈취로 admin페이지 내 XSS취약점을 이용한 피싱사이트 리다이렉트</br>
+  * 시나리오2: 대시보드 지표를 활용하여 DDoS공격 탐지</br>
+### 2. 수행계획수립</br>
 * 수행인원: 시큐리티아카데미 시큐아이트랙 Team.Splunker</br>
 * 수행일정(WBS)
 ![image](https://github.com/mkmkkim/splunk_dashboard/assets/74914390/b81afb1f-6014-417d-ae09-cfc64943c4f7)
 </br>
 _WBS_</br>
+* 구축 환경
+  * 네트워크 구성
+  * 작업환경
+### 3. 수행과정</br>
+![image](https://github.com/mkmkkim/splunk_dashboard/assets/74914390/3969cf27-0d87-4dad-92ff-380ef621f3bf)</br>
+_대시보드 이미지_</br>
