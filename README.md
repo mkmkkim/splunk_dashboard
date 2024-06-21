@@ -21,6 +21,13 @@ Splunk를 이용한 공격성 트래픽 탐지로 실무역량 강화</br>
    * AES 복호화 수행 - Anaconda Prompt, Spyder</br>
 ### 3. 수행과정</br>
 __시나리오1 - admin 페이지 내 XSS 취약점을 이용한 피싱사이트 리다이렉트__</br>
+* 시나리오 전개</br>
+1. 크랙버전 다운로드로 인포스틸러 설치</br>
+2. 인포스틸러로 브라우저 자동 로그인 파일이 유출되어 공격자가 관리자 계정 획득</br>
+3. 사람이 적은 시간대를 노려 공격자가 관리자 페이지에 접근하여 Stored XSS로 피싱사이트 리다이렉트 코드 삽입</br>
+4. 근무 외 시간에 관리자 페이지 접속 경고 메일로 관제실에서 외부 IP가 관리자 페이지 접근 사실 인지</br>
+5. 메일에 첨부된 웹 로그로 공격 사실 확인하여 대응</br>
+6. 익일 침해사고 관제 보고서 발송
 * 참고한 페이지</br>
 [AES 패스워드 복호화](https://nampill.tistory.com/entry/%ED%81%AC%EB%A1%AC-%EB%B8%8C%EB%9D%BC%EC%9A%B0%EC%A0%80-%EA%B3%84%EC%A0%95%EC%A0%95%EB%B3%B4-%EC%B6%94%EC%B6%9C%EB%B9%84%EB%B0%80%EB%B2%88%ED%98%B8-%EB%B3%B5%ED%98%B8%ED%99%94,"")</br>
 [성심당 해킹](https://m.boannews.com/html/detail.html?idx=129583,"성심당%20해킹")</br>
@@ -33,5 +40,4 @@ _브라우저 자동로그인 파일 탈취 과정_
 _트래블닷컴 관리자 계정 탈취</br></br></br>_
 * 시나리오 전개</br>
 ![결과_XSS](https://github.com/mkmkkim/splunk_dashboard/assets/74914390/2c73cc5c-063f-4b79-99d0-e3fe1dbf1174)
-
 </br>
