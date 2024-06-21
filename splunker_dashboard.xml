@@ -1,0 +1,178 @@
+<dashboard version="1.1" refresh="60">
+  <label>Travel.com</label>
+  <description>트래블닷컴 관제 시스템</description>
+  <row>
+    <panel>
+      <viz type="horseshoe_meter_app.horseshoe_meter">
+        <title>실시간 트래픽(last 1m)</title>
+        <search>
+          <query>index=webserver log_type=httpd* |stats count by log_type| stats sum(count) as "Traffic" | table "Traffic" </query>
+          <earliest>-m@m</earliest>
+          <latest>now</latest>
+        </search>
+        <!--<option name="unit">/</option>-->
+        <!--<option name="unitPosition">before</option>-->
+        <!--<option name="underLabel">compared to 2 days before</option>-->
+        <option name="drilldown">all</option>
+        <option name="horseshoe_meter_app.horseshoe_meter.backgroundColor">#FFF</option>
+        <option name="horseshoe_meter_app.horseshoe_meter.dialColor">#d0d5d9</option>
+        <option name="horseshoe_meter_app.horseshoe_meter.maxRangeColor">#b44441</option>
+        <option name="horseshoe_meter_app.horseshoe_meter.maxRangeThreshold">200</option>
+        <option name="horseshoe_meter_app.horseshoe_meter.maxValue">100</option>
+        <option name="horseshoe_meter_app.horseshoe_meter.midRangeColor">#fbcd2f</option>
+        <option name="horseshoe_meter_app.horseshoe_meter.midRangeThreshold">100</option>
+        <option name="horseshoe_meter_app.horseshoe_meter.minRangeColor">#3fc77a</option>
+        <option name="horseshoe_meter_app.horseshoe_meter.minValue">0</option>
+        <option name="horseshoe_meter_app.horseshoe_meter.thresholdStyle">realValue</option>
+        <option name="horseshoe_meter_app.horseshoe_meter.useRangemap">true</option>
+        <option name="horseshoe_meter_app.horseshoe_meter.valueColor">#555</option>
+        <drilldown>
+          <link target="_blank">search?q=index%3Dwebserver%20log_type%3Dhttpd*%20%7Cstats%20count%20by%20log_type%7C%20stats%20sum(count)%20as%20%22Traffic%22%20%7C%20table%20%22Traffic%22&amp;earliest=rt&amp;latest=rt</link>
+        </drilldown>
+      </viz>
+    </panel>
+    <panel>
+      <viz type="horseshoe_meter_app.horseshoe_meter">
+        <title>CPU 사용량(last 1m)</title>
+        <search>
+          <query>index=resource sourcetype=cpu | stats avg(cpu_usage) as CPU | eval CPU=round(CPU, 1)</query>
+          <earliest>-1m@m</earliest>
+          <latest>now</latest>
+        </search>
+        <!--<option name="trendInterval">-1d</option>-->
+        <option name="drilldown">all</option>
+        <option name="horseshoe_meter_app.horseshoe_meter.backgroundColor">#FFF</option>
+        <option name="horseshoe_meter_app.horseshoe_meter.dialColor">#d0d5d9</option>
+        <option name="horseshoe_meter_app.horseshoe_meter.maxRangeColor">#b44441</option>
+        <option name="horseshoe_meter_app.horseshoe_meter.maxRangeThreshold">70</option>
+        <option name="horseshoe_meter_app.horseshoe_meter.maxValue">100</option>
+        <option name="horseshoe_meter_app.horseshoe_meter.midRangeColor">#fbcd2f</option>
+        <option name="horseshoe_meter_app.horseshoe_meter.midRangeThreshold">40</option>
+        <option name="horseshoe_meter_app.horseshoe_meter.minRangeColor">#3fc77a</option>
+        <option name="horseshoe_meter_app.horseshoe_meter.minValue">0</option>
+        <option name="horseshoe_meter_app.horseshoe_meter.thresholdStyle">percentage</option>
+        <option name="horseshoe_meter_app.horseshoe_meter.useRangemap">true</option>
+        <option name="horseshoe_meter_app.horseshoe_meter.valueColor">#555</option>
+        <drilldown>
+          <link target="_blank">search?q=index%3Dresource%20sourcetype%3Dcpu%20%7C%20stats%20avg(cpu_usage)%20as%20CPU%20%7C%20eval%20CPU%3Dround(CPU%2C%201)&amp;earliest=rt&amp;latest=rt</link>
+        </drilldown>
+      </viz>
+    </panel>
+    <panel>
+      <viz type="horseshoe_meter_app.horseshoe_meter">
+        <title>MEMORY 사용량(last 1m)</title>
+        <search>
+          <query>index=resource sourcetype=memory | stats avg(memory_usage) as MEMORY | eval MEMORY=round(MEMORY, 1)</query>
+        </search>
+        <!--<option name="trendInterval">-1d</option>-->
+        <option name="drilldown">all</option>
+        <option name="horseshoe_meter_app.horseshoe_meter.backgroundColor">#FFF</option>
+        <option name="horseshoe_meter_app.horseshoe_meter.dialColor">#d0d5d9</option>
+        <option name="horseshoe_meter_app.horseshoe_meter.maxRangeColor">#b44441</option>
+        <option name="horseshoe_meter_app.horseshoe_meter.maxRangeThreshold">70</option>
+        <option name="horseshoe_meter_app.horseshoe_meter.maxValue">100</option>
+        <option name="horseshoe_meter_app.horseshoe_meter.midRangeColor">#fbcd2f</option>
+        <option name="horseshoe_meter_app.horseshoe_meter.midRangeThreshold">40</option>
+        <option name="horseshoe_meter_app.horseshoe_meter.minRangeColor">#3fc77a</option>
+        <option name="horseshoe_meter_app.horseshoe_meter.minValue">0</option>
+        <option name="horseshoe_meter_app.horseshoe_meter.thresholdStyle">percentage</option>
+        <option name="horseshoe_meter_app.horseshoe_meter.useRangemap">true</option>
+        <option name="horseshoe_meter_app.horseshoe_meter.valueColor">#555</option>
+        <drilldown>
+          <link target="_blank">search?q=index%3Dresource%20sourcetype%3Dmemory%20%7C%20stats%20avg(memory_usage)%20as%20MEMORY%20%7C%20eval%20MEMORY%3Dround(MEMORY%2C%201)&amp;earliest=rt&amp;latest=rt</link>
+        </drilldown>
+      </viz>
+    </panel>
+    <panel>
+      <viz type="horseshoe_meter_app.horseshoe_meter">
+        <title>DISK 사용량(last 1m)</title>
+        <search>
+          <query>index=resource sourcetype=disk | stats avg(disk_usage) as DISK | eval DISK=round(DISK, 1)</query>
+        </search>
+        <!--<option name="trendInterval">-1d</option>-->
+        <option name="drilldown">all</option>
+        <option name="horseshoe_meter_app.horseshoe_meter.backgroundColor">#FFF</option>
+        <option name="horseshoe_meter_app.horseshoe_meter.dialColor">#d0d5d9</option>
+        <option name="horseshoe_meter_app.horseshoe_meter.maxRangeColor">#b44441</option>
+        <option name="horseshoe_meter_app.horseshoe_meter.maxRangeThreshold">70</option>
+        <option name="horseshoe_meter_app.horseshoe_meter.maxValue">100</option>
+        <option name="horseshoe_meter_app.horseshoe_meter.midRangeColor">#fbcd2f</option>
+        <option name="horseshoe_meter_app.horseshoe_meter.midRangeThreshold">40</option>
+        <option name="horseshoe_meter_app.horseshoe_meter.minRangeColor">#3fc77a</option>
+        <option name="horseshoe_meter_app.horseshoe_meter.minValue">0</option>
+        <option name="horseshoe_meter_app.horseshoe_meter.thresholdStyle">percentage</option>
+        <option name="horseshoe_meter_app.horseshoe_meter.useRangemap">true</option>
+        <option name="horseshoe_meter_app.horseshoe_meter.valueColor">#555</option>
+        <drilldown>
+          <link target="_blank">search?q=index%3Dresource%20sourcetype%3Ddisk%20%7C%20stats%20avg(disk_usage)%20as%20DISK%20%7C%20eval%20DISK%3Dround(DISK%2C%201)&amp;earliest=rt&amp;latest=rt</link>
+        </drilldown>
+      </viz>
+    </panel>
+  </row>
+  <row>
+    <panel>
+      <chart>
+        <title>트래픽 유입량(Last 1h)</title>
+        <search>
+          <query>index=webserver log_type=httpd* src_ip!=*:*| timechart count by src_ip limit=3</query>
+          <earliest>-60m@m</earliest>
+          <latest>now</latest>
+        </search>
+        <!--<option name="charting.backgroundColor">#475565</option>-->
+        <!--<option name="charting.foregroundColor">#EBF5FF</option>-->
+        <!--<option name="charting.fontColor">#99CCFF</option>-->
+        <option name="charting.chart.showDataLabels">none</option>
+        <option name="charting.layout.splitSeries">0</option>
+        <option name="charting.legend.placement">bottom</option>
+        <option name="charting.seriesColors">[0xC2D1E0,0x99B2CC,0x7094B8,0x4775A3,0x2E5C8A,0x24476B,0x1A334C,0x0F1F2E,0x050A0F]</option>
+        <option name="height">220</option>
+        <drilldown>
+          <link target="_blank">search?q=index%3Dwebserver%20log_type%3Dhttpd*%20src_ip!%3D*%3A*%7C%20timechart%20count%20by%20src_ip%20limit%3D3&amp;earliest=-60m@m&amp;latest=now</link>
+        </drilldown>
+      </chart>
+    </panel>
+  </row>
+  <row>
+    <panel>
+      <table>
+        <title>공격 유입(Last 1h)</title>
+        <search>
+          <query>
+            earliest=-1h@h latest=now
+            earliest=-1h@h latest=now
+            index=webserver src_ip!="*:*" method=*unionselect* OR *select*from* OR *insertinto* OR *deletefrom* OR *droptable* OR *'or1* OR "*%27or%201*"
+            |stats count by src_ip | rename count as "SQL Injection"
+            |appendcols
+            [search earliest=-1h@h latest=now
+            index=webserver src_ip!="*:*" method=*../*
+            |stats count by src_ip | rename count as "Path Traversal(../)"]
+            |appendcols
+            [search earliest=-1h@h latest=now
+            index=webserver src_ip!="*:*" method="*script>*" OR method="*onerror*" OR "*iframe*"
+            |stats count by src_ip | rename count as "XSS"]
+            |appendcols
+            [search earliest=-1h@h latest=now
+            index=webserver src_ip!="*:*" method=*/etc/* =
+            |stats count by src_ip | rename count as "Broken Access Control"]
+            |appendcols
+            [search earliest=-1h@h latest=now
+            index=webserver src_ip!="*:*" method=*cgi*
+            |stats count by src_ip | rename count as "Shell Shock"]
+            |appendcols
+            [search earliest=-1h@h latest=now
+            index=webserver src_ip!="*:*" method="*/adm*" status="302" OR status="200"
+            |stats count by src_ip | rename count as "Admin Page Access"]
+            </query>
+        </search>
+        <option name="count">10</option>
+        <option name="dataOverlayMode">none</option>
+        <option name="drilldown">cell</option>
+        <option name="rowNumbers">true</option>
+        <option name="wrap">true</option>
+        <drilldown>
+          <link target="_blank">search?q=index%3Dwebserver%20*unionselect*%20OR%20*select*from*%20OR%20*insertinto*%20OR%20*deletefrom*update*set*%20OR%20*droptable*%20OR%20*'or1%3D1*%20OR%20%22*%2527or%25201%3D1*%22%0A%20%20%20%20%20%20%20%20%20%20%20%20%7Cstats%20count%20by%20src_ip%20%7C%20rename%20count%20as%20%22SQL%20Injection%22%0A%20%20%20%20%20%20%20%20%20%20%20%20%7Cappendcols%0A%20%20%20%20%20%20%20%20%20%20%20%20%5Bsearch%20earliest%3D-1h%40h%20latest%3Dnow%0A%20%20%20%20%20%20%20%20%20%20%20%20index%3Dwebserver%20method%3D*..%2F*%0A%20%20%20%20%20%20%20%20%20%20%20%20%7Cstats%20count%20by%20src_ip%20%7C%20rename%20count%20as%20%22File%20Download%22%5D%0A%20%20%20%20%20%20%20%20%20%20%20%20%7Cappendcols%0A%20%20%20%20%20%20%20%20%20%20%20%20%5Bsearch%20earliest%3D-1h%40h%20latest%3Dnow%0A%20%20%20%20%20%20%20%20%20%20%20%20index%3Dwebserver%20method%3D*script*%0A%20%20%20%20%20%20%20%20%20%20%20%20%7Cstats%20count%20by%20src_ip%20%7C%20rename%20count%20as%20%22XSS%22%0A%20%20%20%20%20%20%20%20%20%20%20%20%5D&amp;earliest=-60m@m&amp;latest=now</link>
+        </drilldown>
+      </table>
+    </panel>
+  </row>
+</dashboard>
