@@ -139,25 +139,20 @@
         <search>
           <query>
             earliest=-1h@h latest=now
-            index=webserver src_ip!="*:*" method=*unionselect* OR *select*from* OR *insertinto* OR *deletefrom*update*set* OR *droptable* OR *'or1=1* OR "*%27or%201=1*"
+            earliest=-1h@h latest=now
+            index=webserver src_ip!="*:*" method=*unionselect* OR *select*from* OR *insertinto* OR *deletefrom* OR *droptable* OR *'or1* OR "*%27or%201*"
             |stats count by src_ip | rename count as "SQL Injection"
             |appendcols
             [search earliest=-1h@h latest=now
             index=webserver src_ip!="*:*" method=*../*
             |stats count by src_ip | rename count as "Path Traversal(../)"]
             |appendcols
-            [search earliest=-3m@m latest=now
-            index=webserver src_ip!="*:*" method=*/login*
-            |stats count by src_ip
-            |where count > 10
-            |rename count as "Brute Force"]
-            |appendcols
             [search earliest=-1h@h latest=now
-            index=webserver src_ip!="*:*" method="*script>*"
+            index=webserver src_ip!="*:*" method="*script>*" OR method="*onerror*" OR "*iframe*"
             |stats count by src_ip | rename count as "XSS"]
             |appendcols
             [search earliest=-1h@h latest=now
-            index=webserver src_ip!="*:*" method=*/etc/*
+            index=webserver src_ip!="*:*" method=*/etc/* =
             |stats count by src_ip | rename count as "Broken Access Control"]
             |appendcols
             [search earliest=-1h@h latest=now
@@ -165,7 +160,7 @@
             |stats count by src_ip | rename count as "Shell Shock"]
             |appendcols
             [search earliest=-1h@h latest=now
-            index=webserver src_ip!="*:*" method="*/adm*"
+            index=webserver src_ip!="*:*" method="*/adm*" status="302" OR status="200"
             |stats count by src_ip | rename count as "Admin Page Access"]
             </query>
         </search>
