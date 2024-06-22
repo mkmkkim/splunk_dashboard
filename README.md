@@ -38,7 +38,8 @@ _VMWarePro에서 NAT모드 192.168.1.0대역으로 네트워크 구성_
 > JOIN을 사용하면 검색 시간이 길어지므로 최대한 사용을 지양하고 최적화할 수 있는 쿼리를 고민</br>
 
 ### 대시보드 쿼리 설명</br>
-
+<img src="./assets/dashboard.png" width=70%></br>
+_대시보드 이미지_</br>
 **실시간 접근 시도(1분) 수집**</br>
 'index=webserver log_type=httpd* |stats count by log_type' 쿼리로는 log_type이 httpd:, httpd.service로 결과값이 여러 개였기에 count를 한 번 더 더하고 Traffic으로 이름 변경함.</br>
 <details>
@@ -121,7 +122,7 @@ _VMWarePro에서 NAT모드 192.168.1.0대역으로 네트워크 구성_
 [(기사)유명 제품 크랙버전을 위장한 인포스틸러](https://m.boannews.com/html/detail.html?idx=128626,"유명%20제품%20크랙버전을%20위장한%20인포스틸러")</br>
 [(기사)인포스틸러로 브라우저 자동로그인 파일 탈취](https://m.boannews.com/html/detail.html?tab_type=1&idx=127372,"인포스틸러로%20브라우저%20자동로그인%20파일%20탈취")</br>
 [AES 패스워드 복호화](https://nampill.tistory.com/entry/%ED%81%AC%EB%A1%AC-%EB%B8%8C%EB%9D%BC%EC%9A%B0%EC%A0%80-%EA%B3%84%EC%A0%95%EC%A0%95%EB%B3%B4-%EC%B6%94%EC%B6%9C%EB%B9%84%EB%B0%80%EB%B2%88%ED%98%B8-%EB%B3%B5%ED%98%B8%ED%99%94,"")</br>
-[그누보드5.2.6 취약점](https://github.com/gnuboard/gnuboard5/commit/630e39de16e61d6e0cc224028d20efb782436fba,"그누보드%20취약점")</br></br></br>
+[그누보드5 Github](https://github.com/gnuboard/gnuboard5/commit/630e39de16e61d6e0cc224028d20efb782436fba,"그누보드%20취약점")</br></br></br>
 
 ### 시나리오2 - DDoS 탐지 및 대응</br>
 * 시나리오 전개</br>
@@ -132,6 +133,12 @@ _VMWarePro에서 NAT모드 192.168.1.0대역으로 네트워크 구성_
 ④ ISP 업체와 고객사에 IP차단요청</br>
 
 * 수행과정</br>
+
+**웹서버에 다수의 커넥션 생성**</br>
+① 오픈소스 Hulk DoS 툴을 VM 인스턴스에 설치</br>
+② Hulk DoS툴을 활용하여 웹서버에 다수의 커넥션 생성</br>
+③ 대시보드에서 확인되는 실시간 트래픽 수를 확인하여 임계치를 분당 7,000건으로 설정</br>
+⇒ VM인스턴스 6개에 Hulk DoS 설치 후 커넥션 생성 시, 대시보드에서 확인되는 건 7~8,000건이 최대였으며 약 7분 후 Too many Connection 에러 발생</br>
 
 **대규모 접근 시도 유입 시 대시보드**</br>
 <details>
@@ -146,4 +153,7 @@ _VMWarePro에서 NAT모드 192.168.1.0대역으로 네트워크 구성_
 </details>
 
 **최종 처리 과정 설정**</br>
-웹서버 방화벽 권한은 관제실에 없어 ISP와 고객사에 차단 요청하는 것으로 마무리
+웹서버 방화벽 권한은 관제실에 없어 ISP와 고객사에 차단 요청하는 것으로 마무리</br>
+
+* 참고 페이지</br>
+[Hulk DoS tool](https://github.com/grafov/hulk, "hulk%20dos")</br>
