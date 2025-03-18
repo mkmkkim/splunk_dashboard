@@ -1,7 +1,7 @@
-![header](https://capsule-render.vercel.app/api?type=venom&color=auto&height=200&section=header&text=스플렁크를%20이용한%20공격성%20트래픽%20탐지&fontSize=40&)
+![header](https://capsule-render.vercel.app/api?type=venom&color=auto&height=200&section=header&text=스플렁크를%20이용한%20관제%20업무%20고도화&fontSize=40&)
 ---
 ### 1. 수행목적</br>
-Splunk를 이용한 공격성 트래픽 탐지로 실무역량 강화</br>
+Splunk를 이용한 공격성 트래픽 탐지로 관제 업무 고도화</br>
 * 수행주제
 > 시나리오1: admin페이지 내 XSS 취약점을 이용한 피싱사이트 리다이렉트</br>
 > 시나리오2: 대시보드 지표를 활용하여 DDoS공격 탐지</br>
