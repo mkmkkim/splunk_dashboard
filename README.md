@@ -1,4 +1,4 @@
-![header](https://capsule-render.vercel.app/api?type=venom&color=auto&height=200&section=header&text=스플렁크를%20이용한%20관제%20업무%20고도화&fontSize=40&)
+![header](https://capsule-render.vercel.app/api?type=venom&color=auto&height=200&section=header&text=스플렁크를%20이용한%20시나리오기반%20탐지%20고도화&fontSize=40&)
 ---
 ### 1. 수행목적</br>
 Splunk를 이용한 공격성 트래픽 탐지로 관제 업무 고도화</br>
